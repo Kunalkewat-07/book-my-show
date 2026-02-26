@@ -6,6 +6,7 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
+
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
@@ -28,6 +29,7 @@ fs
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    console.log(model);
     db[model.name] = model;
   });
 
@@ -36,7 +38,12 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+if(db.User){
+  const UserHook = require('./src/hooks/userHooks')
+  UserHook(db.User)
+}
 
+console.log(db);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -3,61 +3,61 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.createTable('Users', {
-      user_id: {
+    await queryInterface.createTable('Theaters', {
+      theater_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-
-      name: {
+      name:{
+        type: Sequelize.STRING,
+      allowNull: false
+      },
+      address: {
         type: Sequelize.STRING,
         allowNull: false
       },
-
-      email: {
-        type: Sequelize.STRING,
+      owner_id:{
+        type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        references:{
+          model: 'Users',
+          key: 'user_id'
+        }
+      },
+      opening_time: {
+      type: Sequelize.TIME,
+      allowNull: false
       },
 
-      phone: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
-
-      password: {
-        type: Sequelize.STRING,
+      closing_time:{
+        type: Sequelize.TIME,
         allowNull: false
       },
-
-      role: {
-        type: Sequelize.ENUM('user', 'admin', 'vendor'),
+      
+      Holiday:{
+        type: Sequelize.STRING,
+        allowNull : false
+      },
+      status:{
+        type: Sequelize.ENUM('active', 'inactive'),
         allowNull: false,
-        defaultValue: 'user'
-      },
-
-      dateOfBirth: {
-        type: Sequelize.DATEONLY,
-        allowNull: true
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
+        defaultValue: 'active'
       },
       isDeleted: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
       },
-
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
-
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -65,8 +65,7 @@ module.exports = {
       }
     })
   },
-
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Theaters');
   }
 };

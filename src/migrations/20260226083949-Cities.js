@@ -3,8 +3,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.createTable('Users', {
-      user_id: {
+    await queryInterface.createTable('Cities', {
+
+     city_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -14,44 +15,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
-
-      phone: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
-
-      password: {
+      state: {
         type: Sequelize.STRING,
         allowNull: false
       },
 
-      role: {
-        type: Sequelize.ENUM('user', 'admin', 'vendor'),
-        allowNull: false,
-        defaultValue: 'user'
+       country: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-
-      dateOfBirth: {
-        type: Sequelize.DATEONLY,
-        allowNull: true
+      isDeleted:{ 
+        type: Sequelize.BOOLEAN,      
+        allowNull: false,
+        defaultValue: false
       },
       deletedAt: {
         type: Sequelize.DATE,
         allowNull: true
       },
-      isDeleted: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: true
-      },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -63,10 +44,10 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: new Date()
       }
-    })
+    })  
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Cities');   
   }
 };
