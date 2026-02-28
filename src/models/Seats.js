@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1
+      defaultValue: 0
     }
   }, {
     sequelize,

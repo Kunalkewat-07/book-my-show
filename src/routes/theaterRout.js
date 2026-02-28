@@ -10,9 +10,9 @@ const { auth } = require("../middleware/auth");
 
 router.post("/create", auth, createTheater);
 
-router.put("/update", auth, updateTheater);
+router.put("/update/:theater_id", auth, updateTheater);
 
-router.delete("/delete", auth, deleteTheater);
+router.delete("/delete/:theater_id", auth, deleteTheater);
 
 router.get("/get-theater/:theater_id", auth, getTheater);
 

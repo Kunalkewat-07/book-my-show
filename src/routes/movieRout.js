@@ -5,9 +5,9 @@ const router=require('express').Router()
 
 
 router.post('/create-movie',auth,createMovie)
-router.delete('/delete-movie',auth,deleteMovie)
-router.put('/update-movie',auth,updateMovie)
-router.get('/get-movie/:movie_id',getMovie)
+router.delete('/delete-movie/:mid',auth,deleteMovie)
+router.put('/update-movie/:mid',auth,updateMovie)
+router.get('/get-movie/:mid',getMovie)
 router.get('/getall-movie',getallMovie)
 
 

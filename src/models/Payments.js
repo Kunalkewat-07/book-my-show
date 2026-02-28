@@ -32,10 +32,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    isActive: {
+    isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1
+      defaultValue: 0
     },
     paid_at: {
       type: DataTypes.DATE,

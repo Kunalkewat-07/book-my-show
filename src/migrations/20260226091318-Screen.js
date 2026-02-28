@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
  await queryInterface.createTable('Screens', {
   
-      screeen_id: {
+      screen_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true

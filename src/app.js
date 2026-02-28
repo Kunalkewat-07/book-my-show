@@ -17,8 +17,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", auth_rout);
-app.use('/api/admin',city_rout);
-
+app.use('/api/city',city_rout);
+app.use('/api/movie',movie_rout)
+app.use('/api/theater',theater_rout)
 const start_server = async () => {
   try {
     await sequelize.authenticate();

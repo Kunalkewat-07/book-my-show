@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { add_City } = require('../controller/cityConrtoller');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Theaters', {
     theater_id: {
@@ -33,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     Holiday: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     status: {
       type: DataTypes.ENUM('active','inactive'),
@@ -43,7 +44,19 @@ module.exports = function(sequelize, DataTypes) {
     isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1
+      defaultValue: 0
+    },
+    deletedAt: {
+    type: DataTypes.DATE,
+   allowNull: true
+  },
+    city_id:{
+       type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Cities',
+        key: 'city_id'
+      }
     }
   }, {
     sequelize,

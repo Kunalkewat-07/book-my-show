@@ -48,10 +48,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: "booked"
     },
-    isActive: {
+    isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1
+      defaultValue: 0
     }
   }, {
     sequelize,

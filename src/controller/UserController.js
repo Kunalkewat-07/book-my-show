@@ -5,11 +5,13 @@ const { raw } = require("express");
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, phone, password, dateOfBirth } = req.body;
-    let user = await Users.findOne({ where: { email, isDeleted: false } });
+    console.log('jiii');
+    const { name, email, phone, password, dateOfBirth,role } = req.body;
+    let user = await Users.findOne({ where: { email, isDeleted: false } ,raw: true});
     if (user) {
       return res.status(409).json({ message: "Email already Exists" });
     }
+
     const haspass = await bcrypt.hash(password, 10);
 
     user = await Users.create({
@@ -18,11 +20,14 @@ exports.signup = async (req, res) => {
       phone,
       password: haspass,
       dateOfBirth,
+      role,
     });
+    console.log(user);
     return res
       .status(400)
       .json({ message: "user registered successfully" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json(error.message);
   }
 };
@@ -52,14 +57,18 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
+    console.log('hii');
     const id = req.user.user_id;
+    console.log(id);
+    // const user = await Users.findAll()
     const user = await Users.findOne({
-      where: { user_id: id, isDeleted: false },
+      where: { user_id: id, isDeleted:0 },
       attributes: { exclude: ["password", "isDeleted", "deletedAt"] },
     });
     if (!user) return res.status(409).json({ message: "user not found" });
     return res.status(200).json(user);
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json(error.message);
   }
 };
