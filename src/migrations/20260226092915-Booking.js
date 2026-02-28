@@ -61,7 +61,7 @@ movie_id: {
       },
 
       status:{
-        type: Sequelize.ENUM('booked', 'cancelled'),
+        type: Sequelize.ENUM('booked','cancelled','pending'),
         allowNull: false,
         defaultValue: 'booked'
       },

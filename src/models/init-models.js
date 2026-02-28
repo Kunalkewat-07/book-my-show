@@ -23,6 +23,7 @@ function initModels(sequelize) {
   var Shows = _Shows(sequelize, DataTypes);
   var Theaters = _Theaters(sequelize, DataTypes);
   var Users = _Users(sequelize, DataTypes);
+
   Payments.belongsTo(Bookings, { as: "booking", foreignKey: "booking_id"});
   Bookings.hasMany(Payments, { as: "Payments", foreignKey: "booking_id"});
   Bookings.belongsTo(Movies, { as: "movie", foreignKey: "movie_id"});
