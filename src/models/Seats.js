@@ -12,26 +12,21 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'Screens',
-        key: 'screeen_id'
+        key: 'screen_id'
       }
     },
     seat_number: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    is_booked: {
+    isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: 0
     },
-    price: {
-      type: DataTypes.FLOAT,
+    seat_type: {
+      type: DataTypes.STRING(255),
       allowNull: false
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: 0
     }
   }, {
     sequelize,

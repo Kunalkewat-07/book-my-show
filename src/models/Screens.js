@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Screens', {
-    screeen_id: {
+    screen_id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -27,6 +27,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: 0
+    },
+    screen_type: {
+      type: DataTypes.STRING(255),
+      allowNull: false
     }
   }, {
     sequelize,
@@ -39,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "screeen_id" },
+          { name: "screen_id" },
         ]
       },
       {

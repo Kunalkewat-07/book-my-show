@@ -6,7 +6,9 @@ require("dotenv").config();
 const auth_rout = require("./routes/authRout");
 const city_rout = require('./routes/cityRout');
 const movie_rout = require('./routes/movieRout');
-const  theater_rout = require('./routes/theaterRout')
+const  theater_rout = require('./routes/theaterRout');
+const seat_rout  = require('./routes/seatRout');
+const screeen_rout = require('./routes/screenRout');
 
 const PORT = process.env.PORT || 3000;
 console.log(process.env.PORT);
@@ -20,6 +22,9 @@ app.use("/api/user", auth_rout);
 app.use('/api/city',city_rout);
 app.use('/api/movie',movie_rout)
 app.use('/api/theater',theater_rout)
+app.use('/api/seat',seat_rout)
+app.use('/api/screen',screeen_rout)
+
 const start_server = async () => {
   try {
     await sequelize.authenticate();

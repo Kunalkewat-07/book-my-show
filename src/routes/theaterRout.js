@@ -7,7 +7,7 @@ const {
   getAllTheaters,
 } = require("../controller/TheaterController");
 const { auth } = require("../middleware/auth");
-
+  const mtrout =  require('../routes/mtRouts')
 router.post("/create", auth, createTheater);
 
 router.put("/update/:theater_id", auth, updateTheater);
@@ -18,4 +18,5 @@ router.get("/get-theater/:theater_id", auth, getTheater);
 
 router.get("/get-all-theaters", auth, getAllTheaters);
 
+router.use('/',mtrout)
 module.exports = router;

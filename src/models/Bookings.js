@@ -7,28 +7,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    movie_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Movies',
-        key: 'movie_id'
-      }
-    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'Users',
         key: 'user_id'
-      }
-    },
-    show_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Shows',
-        key: 'show_id'
       }
     },
     seat_id: {
@@ -44,14 +28,26 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     status: {
-      type: DataTypes.ENUM('booked','cancelled'),
+      type: DataTypes.ENUM('booked','cancelled','pending'),
       allowNull: false,
       defaultValue: "booked"
     },
     isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 1
+    },
+    MT_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'MovieTheaters',
+        key: 'MT_id'
+      }
+    },
+    total_amount: {
+      type: DataTypes.DECIMAL(10,0),
+      allowNull: true
     }
   }, {
     sequelize,
@@ -68,13 +64,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "movie_id",
-        using: "BTREE",
-        fields: [
-          { name: "movie_id" },
-        ]
-      },
-      {
         name: "user_id",
         using: "BTREE",
         fields: [
@@ -82,17 +71,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "show_id",
-        using: "BTREE",
-        fields: [
-          { name: "show_id" },
-        ]
-      },
-      {
         name: "seat_id",
         using: "BTREE",
         fields: [
           { name: "seat_id" },
+        ]
+      },
+      {
+        name: "Bookings_MT_id_foreign_idx",
+        using: "BTREE",
+        fields: [
+          { name: "MT_id" },
         ]
       },
     ]

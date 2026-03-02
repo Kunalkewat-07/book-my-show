@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const { add_City } = require('../controller/cityConrtoller');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Theaters', {
     theater_id: {
@@ -46,12 +45,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    deletedAt: {
-    type: DataTypes.DATE,
-   allowNull: true
-  },
-    city_id:{
-       type: DataTypes.INTEGER,
+    city_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'Cities',
@@ -77,6 +72,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "owner_id" },
+        ]
+      },
+      {
+        name: "Theaters_city_id_foreign_idx",
+        using: "BTREE",
+        fields: [
+          { name: "city_id" },
         ]
       },
     ]
