@@ -1,23 +1,32 @@
 {
-  "name": "bookmyshow",
+  "name": "book-my-show",
   "version": "1.0.0",
-  "description": "",
+  "description": "npx sequelize-cli -h localhost -d BookMyShow -u root -p 3306 -x Mysql@123 -e mysql",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kunalkewat-07/book-my-show.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "sequelize-cli": "^6.6.5"
+  "bugs": {
+    "url": "https://github.com/Kunalkewat-07/book-my-show/issues"
   },
+  "homepage": "https://github.com/Kunalkewat-07/book-my-show#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "json": "^11.0.0",
     "jsonwebtoken": "^9.0.3",
-    "mysql2": "^3.18.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.18.2",
     "sequelize": "^6.37.7",
-    "sequelize-auto": "^0.8.8"
+    "token": "^0.1.0",
+    "web": "^0.0.2"
   }
 }
