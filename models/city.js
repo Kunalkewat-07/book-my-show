@@ -31,12 +31,12 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-02-27 07:09:42"
+      defaultValue: "2026-03-05 05:23:35"
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-02-27 07:09:42"
+      defaultValue: "2026-03-05 05:23:35"
     }
   }, {
     sequelize,

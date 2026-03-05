@@ -1,6 +1,6 @@
 
 const SequelizeAuto=require('sequelize-auto')
-const auto = new SequelizeAuto('movie', 'root', 'Jarvish@123', {
+const auto = new SequelizeAuto('movie', 'root', 'Mysql@123', {
     host: 'localhost',
     dialect: 'mysql',
     directory: './models', // where to write files
