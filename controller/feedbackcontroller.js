@@ -1,8 +1,11 @@
-const {Feedbacks} = require('../models/dbhelper');
+const {feedback:Feedbacks} = require('../models/dbhelper');
 exports.createfeedBack = async(req, res)=>{
     try {
+        console.log(req.user);
+        const {movie_id,rating,comment} = req.body
         console.log('hii');
-        await Feedbacks.create(req.user.user_id,...req.body)
+        console.log(Feedbacks);
+        await Feedbacks.create({user_id:req.user.user_id,movie_id,rating,comment})
         res.status(200).json({msg: "thanks for rating"})
     } catch (error) {
         res.status(500).json(error.message)

@@ -12,6 +12,7 @@ const theaterRout=require('./router/theater');
 const cityRout=require('./router/city');
 const seatRout=require('./router/saet')
 
+
 app.use(express.json())
 5
 app.get('/',(req,res)=>{

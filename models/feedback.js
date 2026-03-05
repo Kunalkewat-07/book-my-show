@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
     isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 1
+      defaultValue: 0
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -45,6 +45,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: "2026-03-05 05:23:36"
+    },
+    comment:{
+      type: DataTypes.STRING
     }
   }, {
     sequelize,
