@@ -11,19 +11,12 @@
     "http"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/auth/signup": {
       "post": {
         "description": "",
+        "tags": [
+            "Authentication"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -32,22 +25,25 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "email": {
-                  "example": "any"
+                "type": "string"
                 },
                 "phone": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "dateOfBirth": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "date"
                 },
                 "role": {
-                  "example": "any"
+                  "type": "string",
+                  "enum": ["user","vendor","admin"]
+
                 }
               }
             }
@@ -69,6 +65,9 @@
     "/api/auth/login": {
       "post": {
         "description": "",
+         "tags": [
+            "Authentication"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -102,6 +101,9 @@
     "/api/auth/getUser": {
       "get": {
         "description": "",
+         "tags": [
+            "Authentication"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -126,6 +128,9 @@
     "/api/auth/book": {
       "post": {
         "description": "",
+         "tags": [
+            "bookings"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -181,6 +186,9 @@
     "/api/auth/cencalBooking/{booking_id}": {
       "post": {
         "description": "",
+        "tags": [
+            "bookings"
+        ],
         "parameters": [
           {
             "name": "booking_id",
@@ -210,6 +218,9 @@
     "/api/auth/feedback/add-feedback": {
       "post": {
         "description": "",
+        "tags": [
+            "feedbacks"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -248,6 +259,9 @@
     "/api/auth/feedback/delete-feedback/{fid}": {
       "delete": {
         "description": "",
+        "tags": [
+            "feedbacks"
+        ],
         "parameters": [
           {
             "name": "fid",
@@ -277,6 +291,9 @@
     "/api/auth/feedback/update-feedback/{fid}": {
       "put": {
         "description": "",
+        "tags": [
+            "feedbacks"
+        ],
         "parameters": [
           {
             "name": "fid",
@@ -326,6 +343,9 @@
     "/api/auth/admin/getTopMovies": {
       "get": {
         "description": "",
+        "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -353,6 +373,9 @@
     "/api/auth/admin/getMonthlyRevenue": {
       "get": {
         "description": "",
+          "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -380,6 +403,9 @@
     "/api/auth/admin/getAlmostFullShows": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -407,6 +433,9 @@
     "/api/auth/admin/getFrequentUsers": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -434,6 +463,9 @@
     "/api/auth/admin/getTheaterRevenue": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -461,6 +493,9 @@
     "/api/auth/admin/getSeatPreference": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -488,6 +523,9 @@
     "/api/auth/admin/getTopRatedMovies": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -515,6 +553,9 @@
     "/api/auth/admin/preBookingHours": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -542,6 +583,9 @@
     "/api/auth/admin/getCancelledUsers": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -569,6 +613,9 @@
     "/api/auth/admin/getCityWiseRevenue": {
       "get": {
         "description": "",
+         "tags": [
+            "Analytics"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -596,6 +643,9 @@
     "/api/movie/create-movie": {
       "post": {
         "description": "",
+         "tags": [
+            "Movies"
+        ],
         "parameters":[
             {
                 "name": "body",
@@ -663,6 +713,9 @@
     "/api/movie/delete-movie/{mid}": {
       "delete": {
         "description": "",
+         "tags": [
+            "Movies"
+        ],
         "parameters": [
           {
             "name": "mid",
@@ -701,6 +754,9 @@
     "/api/movie/update-movie/{mid}": {
       "put": {
         "description": "",
+         "tags": [
+            "Movies"
+        ],
         "parameters": [
           {
             "name": "mid",
@@ -769,6 +825,9 @@
     "/api/movie/get-movie/{mid}": {
       "get": {
         "description": "",
+         "tags": [
+            "Movies"
+        ],
         "parameters": [
           {
             "name": "mid",
@@ -793,6 +852,9 @@
     "/api/movie/getall-movie": {
       "get": {
         "description": "",
+         "tags": [
+            "Movies"
+        ],
         "parameters": [
           {
             "name": "pageno",
@@ -815,6 +877,9 @@
     "/api/theater/create-theater": {
       "post": {
         "description": "",
+         "tags": [
+            "theater"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -868,6 +933,9 @@
     "/api/theater/update/{theater_id}": {
       "put": {
         "description": "",
+        "tags": [
+            "theater"
+        ],
         "parameters": [
           {
             "name": "theater_id",
@@ -924,6 +992,9 @@
     "/api/theater/delete/{theater_id}": {
       "delete": {
         "description": "",
+        "tags": [
+            "theater"
+        ],
         "parameters": [
           {
             "name": "theater_id",
@@ -952,6 +1023,9 @@
     "/api/theater/get-theater/{theater_id}": {
       "get": {
         "description": "",
+        "tags": [
+            "theater"
+        ],
         "parameters": [
           {
             "name": "theater_id",
@@ -976,6 +1050,9 @@
     "/api/theater/get-all-theaters": {
       "get": {
         "description": "",
+        "tags": [
+            "theater"
+        ],
         "parameters": [
           {
             "name": "pageno",
@@ -1001,6 +1078,9 @@
     "/api/theater/screen/create-screen/{Tid}": {
       "post": {
         "description": "",
+        "tags": [
+            "screen"
+        ],
         "parameters": [
           {
             "name": "Tid",
@@ -1061,6 +1141,9 @@
     "/api/theater/screen/update-screen/{sid}": {
       "put": {
         "description": "",
+         "tags": [
+            "screen"
+        ],
         "parameters": [
           {
             "name": "sid",
@@ -1120,6 +1203,9 @@
     "/api/theater/screen/delete-screen/{sid}": {
       "delete": {
         "description": "",
+         "tags": [
+            "screen"
+        ],
         "parameters": [
           {
             "name": "sid",
@@ -1157,6 +1243,9 @@
     "/api/theater/movie/add": {
       "post": {
         "description": "",
+         "tags": [
+            "theater->movie"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -1200,6 +1289,9 @@
     "/api/theater/movie/update": {
       "put": {
         "description": "",
+        "tags": [
+            "theater->movie"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -1208,13 +1300,13 @@
               "type": "object",
               "properties": {
                 "MT_id": {
-                  "example": "any"
+                  "type" : "integer"
                 },
                 "movie_id": {
-                  "example": "any"
+                  "type": "integer"
                 },
                 "theater_id": {
-                  "example": "any"
+                  "type": "integer"
                 }
               }
             }
@@ -1247,6 +1339,9 @@
     "/api/theater/movie/delete": {
       "delete": {
         "description": "",
+        "tags": [
+            "theater->movie"
+        ],
         "parameters": [
           {
             "name": "body",
@@ -1255,7 +1350,7 @@
               "type": "object",
               "properties": {
                 "MT_id": {
-                  "example": "any"
+                  "type": "integer"
                 }
               }
             }
@@ -1287,6 +1382,9 @@
     "/api/city/add-city": {
       "post": {
         "description": "",
+        "tags": [
+            "city"
+        ],
          "parameters": [
           {
             "name": "body",
@@ -1332,6 +1430,9 @@
     "/api/city/getAll-city": {
       "get": {
         "description": "",
+        "tags": [
+            "city"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1351,6 +1452,9 @@
     "/api/seat/create-seat/{screen_id}": {
       "post": {
         "description": "",
+        "tags": [
+            "seat"
+        ],
         "parameters": [
           {
             "name": "screen_id",
@@ -1411,7 +1515,11 @@
     },
     "/api/seat/delete-seat/{seat_id}": {
       "delete": {
-        "description": "","parameters": [
+        "description": "",
+        "tags": [
+            "seat"
+        ],
+        "parameters": [
           {
             "name": "seat_id",
             "in": "params",
