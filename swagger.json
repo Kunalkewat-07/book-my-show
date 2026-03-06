@@ -1,0 +1,1453 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My Express API",
+    "description": "Automatically generated Swagger docs",
+    "version": "1.0.0"
+  },
+  "host": "localhost:9293",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/signup": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "kunal@gmail.com"
+                },
+                "password": {
+                  "example": "kunal@123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/getUser": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/book": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "showId": {
+                  "example": "2"
+                },
+                "seat_id": {
+                  "example": "1"
+                },
+                "paymentDetails": {
+                  "type": "object",
+                  "properties": {
+                    "amount": {
+                        "type": "double",
+                        "example" :"300.00"
+                    },
+                    "method": {
+                        "type": "string",
+                        "example": "UPI"
+                    },
+                    "transactionId": {
+                        "type": "string",
+                        "example": "TXN1223898394"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/cencalBooking/{booking_id}": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/feedback/add-feedback": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "movie_id": {
+                  "example": "5"
+                },
+                "rating": {
+                  "example": "4"
+                },
+                "comment": {
+                  "example": "NICE MOVIE"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/feedback/delete-feedback/{fid}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "fid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/feedback/update-feedback/{fid}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "fid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "rating": {
+                        "type": "integer",
+                        "example": "4" 
+                    },
+                    "comment": {
+                        "type": "string",
+                        "example": "nice movie"
+                    }
+                }
+             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getTopMovies": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getMonthlyRevenue": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getAlmostFullShows": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getFrequentUsers": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getTheaterRevenue": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getSeatPreference": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getTopRatedMovies": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/preBookingHours": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getCancelledUsers": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/auth/admin/getCityWiseRevenue": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/movie/create-movie": {
+      "post": {
+        "description": "",
+        "parameters":[
+            {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                    "type": "object",
+                    "properties":{
+                        "title": {
+                            "type": "string",
+                            "example": "pushpa the rise"
+                        },
+                        "language": {
+                            "type": "string",
+                            "example": "hindi, telgu, tamil"
+                        },
+                        "name":{
+                            "type": "string",
+                            "example": "pushpa"
+                        },
+                        "genre": {
+                            "type": "string",
+                            "example": "thriller,suspense,action"
+                        },
+                        "duration_time": {
+                                "type" : "integer",
+                                "example" : 120
+                        },
+                       "release_date": {
+                          "type": "string",
+                           "format": "date",
+                           "example": "2026-03-06"
+                        },
+                        "description": {
+                            "type": "string",
+                            "example": "pushpa is the action thirller fild by ss rajamouli"
+                        }
+                    }
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/movie/delete-movie/{mid}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/movie/update-movie/{mid}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "type": "object",
+                "properties":{
+                    "title": {
+                        "type": "string"
+                    },
+                    "nmae": {
+                        "type": "string"
+                    },
+                    "genre": {
+                        "type": "string"
+                    },
+                    "duration_time": {
+                        "type": "integer"
+                    },
+                    "release_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/movie/get-movie/{mid}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/movie/getall-movie": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "pageno",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/theater/create-theater": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                    "type": "string",
+                  "example": "janta theater"
+                },
+                "address": {
+                    "type": "string",
+                  "example": "udhna darwaja surat gujrat"
+                },
+                "opening_time": {
+                    "type": "string",
+                    "format": "time",
+                  "example": "08:00:00"
+                },
+                "closing_time": {
+                   "type": "string",
+                    "format": "time",
+                  "example": "23:59:00"
+                }
+              }
+       
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/update/{theater_id}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "theater_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },{
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "opening_time": {
+                    "type": "string",
+                    "format": "time"
+                 
+                },
+                "closing_time": {
+                   "type": "string",
+                    "format": "time"
+                }
+              }
+       
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/delete/{theater_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "theater_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/get-theater/{theater_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "theater_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/theater/get-all-theaters": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "pageno",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/theater/screen/create-screen/{Tid}": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "Tid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+             "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "screen_no": {
+                  "type": "integer"
+                },
+                "total_seats": {
+                  "type": "integer"
+                },
+                "screen_type": {
+                  "type": "string",
+                  "enum": ["platinum","gold","silver"]
+                },
+                "theater_id":{
+                    "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/screen/update-screen/{sid}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },{
+            "name": "body",
+            "in": "body",
+             "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "screen_no": {
+                  "type": "integer"
+                },
+                "total_seats": {
+                  "type": "integer"
+                },
+                "screen_type": {
+                  "type": "string",
+                  "enum": ["platinum","gold","silver"]
+                },
+                "theater_id":{
+                    "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/screen/delete-screen/{sid}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/movie/add": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "movie_id": {
+                    "type": "integer"
+                },
+                "theater_id": {
+                    "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/movie/update": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "MT_id": {
+                  "example": "any"
+                },
+                "movie_id": {
+                  "example": "any"
+                },
+                "theater_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/movie/delete": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "MT_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/city/add-city": {
+      "post": {
+        "description": "",
+         "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "type": "string"
+                    },
+                    "state":{
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    }
+                }
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/city/getAll-city": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/seat/create-seat/{screen_id}": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "screen_id",
+            "in": "params",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "silver": {
+                 "type": "integer"
+                },
+                "gold": {
+                  "type": "integer"
+                },
+                "platinum": {
+                  "type": "integer"
+                },
+                "platinum_price": {
+                  "type": "integer"
+                },
+                "silver_price": {
+                  "type": "integer"
+                }
+            }
+          }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/seat/delete-seat/{seat_id}": {
+      "delete": {
+        "description": "","parameters": [
+          {
+            "name": "seat_id",
+            "in": "params",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },"security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  } 
+}

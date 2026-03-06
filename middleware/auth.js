@@ -4,12 +4,12 @@ const { verifyToken } = require("../utils/jwt");
 exports.auth = async (req, res, next) => {
 
 try {
-    let token = req.header("authorization");
+    let token =  req.headers.authorization;
   if (!token) {
     return res.status(404).json({ message: "UnAuthorized user" });
   }
 
-  token = token.split(" ")[1];
+  // token = token.split(" ")[1];
   const varify = verifyToken(token);
 
   if (!varify) {

@@ -5,6 +5,6 @@ const router = require('express').Router();
 
 router.post('/add-city',auth,add_City)
 
-router.get('/getAll-city',auth,getAll_City)
+router.get('/getAll-city',getAll_City)
 
 module.exports = router;

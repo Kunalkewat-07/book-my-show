@@ -437,3 +437,217 @@ having total_users > 3
 
 
 ----- 5th query--------------
+
+
+
+
+
+
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Post API",
+    "description": "This API handles the retrieval of posts with pagination.",
+    "version": "1.0.0"
+  },
+  "paths": {
+   "/api/auth/signup": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register user inside database",
+                "operationId": "signUp",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Enter email of the user for registeration",
+                                        "example": "JayYadav@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Enter password for the identification",
+                                        "example": "JayYadav900"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user register successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "done bro!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "user already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user already exists"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "server-side failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login user ",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Enter email of the user for registeration",
+                                        "example": "JayYadav@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Enter password for the identification",
+                                        "example": "JayYadav900"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user login successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "abin234nfndflsfjnfdaf"
+                                        },
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "_id": {
+                                                    "type": "string",
+                                                    "description": "unique id for user",
+                                                    "example": "6934jtr0j993499933"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+    "/api/user/getUser": {
+      "get": {
+        "summary":"user profile",
+        "responses": {
+            "200":{
+                "description":"User fetched sucessfully",
+                "content": {
+                    "application/json": {
+                        "schema":{
+                            "type": "object",
+                            "properties":{
+                                "id":{
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                               "email": {
+                                    "type": "string",
+                                    "example": "hello@gmail.com"
+                               },
+                               "role" :{
+                                    "type": "string",
+                                    "enum": ["user", "admin", "vendor"]
+                               },
+                               "dateOfBirth": {
+                                    "type": "date"
+                               }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      }  
+    }
+  },
+"components": {
+  "securitySchemes": {
+    "BearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}
+
+}
+

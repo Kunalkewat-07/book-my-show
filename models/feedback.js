@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: "2026-03-05 09:10:57"
     },
-    commment: {
+    comment: {
       type: DataTypes.STRING(255),
       allowNull: true
     }

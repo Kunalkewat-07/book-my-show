@@ -4,10 +4,8 @@ exports.createMovie = async (req, res) => {
 try {
       if (req.user.role != "admin")
    return  res.status(403).json({ msg: "NOT authorized !!!!" });
-console.log("helloooooooooo");
 console.log(req.body)
   const movie = await Movie.create(req.body);
-  console.log("bhaiiiiiiiiiii")
   res.status(200).json({ msg: "movie create succesfully !!" });
 } catch (error) {
       return res.status(500).send(error.message)             

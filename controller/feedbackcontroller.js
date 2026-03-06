@@ -25,6 +25,7 @@ try {
         return res.status(404).json({message: 'not found'});
     }
   await feedback.update({isDeleted: 1})
+  res.status(200).json({message: "feedback deleted"})
 } catch (error) {
     res.status(500).json(error.message)
 }

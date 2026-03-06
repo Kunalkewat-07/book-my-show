@@ -5,7 +5,7 @@ const Router=require('express').Router();
 
 
 Router.post('/create-seat/:screen_id',auth,createSeat)
-Router.delete('/delete-seat',auth,deleteSeat)
+Router.delete('/delete-seat/:seat_id',auth,deleteSeat)
 
 
 
