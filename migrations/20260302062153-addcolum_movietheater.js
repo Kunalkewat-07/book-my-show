@@ -19,7 +19,7 @@ module.exports = {
       type: Sequelize.TIME,
     });
 
-      await queryInterface.removeColumn('MovieTheaters','show_id');
+      // await queryInterface.removeColumn('MovieTheaters','show_id');
 
   },
 

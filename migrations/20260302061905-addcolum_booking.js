@@ -19,8 +19,8 @@ module.exports = {
     allowNUll: false
    });
 
-    await queryInterface.removeColumn('Bookings','movie_id');
-     await queryInterface.removeColumn('Bookings','show_id');
+    // await queryInterface.removeColumn('Bookings','movie_id');
+    //  await queryInterface.removeColumn('Bookings','show_id');
   },
 
   async down (queryInterface, Sequelize) {

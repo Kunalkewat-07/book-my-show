@@ -4,7 +4,7 @@ const express=require('express')
 const app=express();
 const port=process.env.PORT || 3000
 const sequelize=require('./config/db')
-
+const redisClient = require('./config/redis');
 
 const userRout=require('./router/user')
 const movieRout=require('./router/movie')
@@ -29,10 +29,17 @@ app.use('/api/seat',seatRout)
 
 async function startserver() {
     try {
-        await sequelize.authenticate();
-app.listen(port,()=>{
-    console.log(`server has started at http://localhost:${port}`);
-})
+        await sequelize.authenticate().then(()=>{
+            console.log('db connected!!');
+            redisClient.connect().then(()=>{
+                console.log('redis connected');
+                app.listen(port,()=>{
+                    console.log(`server has started at http://localhost:${port}`);
+                })
+            }).catch((error=>{
+                console.log(error);
+            }))
+        });
     } catch (error) {
         console.log(error)
     }

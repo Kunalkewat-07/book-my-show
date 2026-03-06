@@ -27,12 +27,12 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 05:23:35"
+      defaultValue: "2026-03-05 09:10:02"
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 05:23:35"
+      defaultValue: "2026-03-05 09:10:02"
     },
     theater_id: {
       type: DataTypes.INTEGER,

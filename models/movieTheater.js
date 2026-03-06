@@ -37,12 +37,12 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 05:23:36"
+      defaultValue: "2026-03-05 09:11:12"
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 05:23:36"
+      defaultValue: "2026-03-05 09:11:12"
     },
     price: {
       type: DataTypes.DECIMAL(10,0),

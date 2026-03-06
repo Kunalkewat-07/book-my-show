@@ -61,7 +61,6 @@ exports.getMovie=async (req,res)=>{
     const movie=await Movie.findOne({where:{movie_id,isDeleted:false},attributes:{exclude:['isDeleted','deletedAt','createdAt','updatedAt']}});
   
     if(!movie) res.status(401).json({msg:"movie not found !!"})
-        //*****yaha par movie ki detailes thodi kam deni he */
         res.status(200).json(movie)
   } catch (error) {
     res.status(500).send(error.message)

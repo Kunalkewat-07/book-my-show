@@ -9,6 +9,7 @@ Router.post('/signup',signup);
 Router.post('/login',login)
 Router.get('/getUser',auth,getUser)
 Router.post('/book',auth,bookingAndpayment)
-Router.post('/cancelBooking/:booking_id',auth,cancelBooking)
+Router.post('/cencalBooking/:booking_id',auth,cancelBooking)
+
 Router.use('/feedback',feedbackrout)
 module.exports=Router;

@@ -32,17 +32,6 @@ module.exports = {
         onDelete: 'CASCADE' 
       },
 
-      show_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Shows',
-          key: 'show_id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE' 
-      },
-
       seat_id : {       
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -68,7 +57,7 @@ module.exports = {
       isDeleted: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+        defaultValue: false
       },
       deletedAt: {
         type: Sequelize.DATE,

@@ -8,7 +8,6 @@ var _payment = require("./payment");
 var _screen = require("./screen");
 var _seat = require("./seat");
 var _sequelizeMetum = require("./sequelizeMetum");
-var _show = require("./show");
 var _theater = require("./theater");
 var _user = require("./user");
 
@@ -22,7 +21,6 @@ function initModels(sequelize) {
   var screen = _screen(sequelize, DataTypes);
   var seat = _seat(sequelize, DataTypes);
   var sequelizeMetum = _sequelizeMetum(sequelize, DataTypes);
-  var show = _show(sequelize, DataTypes);
   var theater = _theater(sequelize, DataTypes);
   var user = _user(sequelize, DataTypes);
 
@@ -63,7 +61,6 @@ function initModels(sequelize) {
     screen,
     seat,
     sequelizeMetum,
-    show,
     theater,
     user,
   };

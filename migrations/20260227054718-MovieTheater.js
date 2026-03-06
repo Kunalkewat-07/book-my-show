@@ -23,15 +23,7 @@ module.exports = {
           onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      show_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Shows',
-          key: 'show_id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
+      
       screen_id: {
         type: Sequelize.INTEGER,
         references:{
@@ -48,7 +40,7 @@ module.exports = {
       isDeleted: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+        defaultValue: false
       },
 
       createdAt: {
