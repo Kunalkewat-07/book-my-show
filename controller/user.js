@@ -4,7 +4,6 @@ const {generateToken}= require('../utils/jwt')
 
 exports.signup = async(req,res)=>{
      try {
-      console.log('hii');
         const {name ,email,phone,password,dateOfBirth,role}= req.body;
         console.log(req.body);
         let  user = await Users.findOne({where:{email,isDeleted:false}});
@@ -32,12 +31,14 @@ exports.signup = async(req,res)=>{
 exports.login = async(req,res)=>{
   try {
    const {email , password} = req.body;
+   console.log(email,password);
    const user =  await Users.findOne({where:{email,isDeleted:false},raw:true});
    console.log(user);
    if(!user){
       return res.status(404).json({message:'User not found'});
    }
-   const is_match  = bcrypt.compare(password,user.password);
+   const is_match  = await bcrypt.compare(password,user.password);
+   console.log(is_match);
     if(!is_match){
       return res.status(404).json({message: 'invalid credintial !!'});
     }

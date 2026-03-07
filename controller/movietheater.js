@@ -89,7 +89,7 @@ exports.deleteMovieIntoTheater = async (req, res) => {
     }
 
 }
-
+/* 
 exports.getMoviesOfTheater = async (req, res) => {
 
     try {
@@ -101,4 +101,4 @@ exports.getMoviesOfTheater = async (req, res) => {
     } catch (err) {
         res.status(500).send(err.message);
     }
-}
+} */

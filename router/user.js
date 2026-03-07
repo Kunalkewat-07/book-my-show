@@ -4,10 +4,11 @@ const { auth } = require('../middleware/auth');
 const feedbackrout = require('./feedbackrout')
 const adminrout = require('./admin')
 const Router=require('express').Router()
+const validate=require('../middleware/validate');
+const { signupSchema, loginSchema } = require('../validate/user');
 
-
-Router.post('/signup',signup);
-Router.post('/login',login)
+Router.post('/signup',validate(signupSchema,"body"),signup);
+Router.post('/login',validate(loginSchema,'body'),login)
 Router.get('/getUser',auth,getUser)
 Router.post('/book',auth,bookingAndpayment)
 Router.post('/cencalBooking/:booking_id',auth,cancelBooking)
