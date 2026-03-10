@@ -1,5 +1,7 @@
 module.exports = (schema,property) => {
     return (req, res, next) => {
+      console.log("inside validate ....");
+      console.log(req.params);
       const { error, value } = schema.validate(req[property], {
         abortEarly: false,
         stripUnknown: true
@@ -12,7 +14,7 @@ module.exports = (schema,property) => {
         });
       }
   
-      req.body = value;
+      req['property'] = value;
       next();
     };
   };

@@ -33,10 +33,9 @@ exports.createSeatSchema = Joi.object({
  * Delete Seat Validation
  * No body data is needed, so just allow empty body
  */
-exports.deleteSeatschema = Joi.object({})
-  .unknown(false);
 
-  exports.SeatIdParamSchema = Joi.object({
+
+  exports.Seat_IdParamSchema = Joi.object({
     seat_id: Joi.number()
       .integer()
       .positive()
@@ -48,3 +47,15 @@ exports.deleteSeatschema = Joi.object({})
       })
   });
   
+
+  exports.SIdParamSchema = Joi.object({
+    screen_id: Joi.number()
+      .integer()
+      .positive()
+      .required()
+      .messages({
+        "number.base": "Screen ID must be a number",
+        "number.positive": "Screen ID must be positive",
+        "any.required": "Screen ID is required"
+      })
+  });

@@ -38,7 +38,7 @@ exports.updateMovie = async (req, res) => {
    try {
      const movie_id=req.params.mid;
   if (req.user.role != "admin")
-    return res.status(403).json({ msg: "NOT authorized !!" });
+    return res.status(403).json({ msg: "no permission" });
      const moviee=await Movie.findOne({where:{movie_id,isDeleted:false}})
 
     if(!moviee) return res.status(401).json({msg:"movie not found !!"})

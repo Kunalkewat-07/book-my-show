@@ -24,8 +24,7 @@ exports.addMovieIntoTheaterSchema = Joi.object({
     .optional(),
 
   start_time: Joi.string()
-    .pattern(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/)
-    .optional(),
+  .pattern(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) ([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/)    .optional(),
 }).unknown(false);
 
 
@@ -58,15 +57,15 @@ exports.updateMovieIntoTheaterScehma = Joi.object({
     .optional(),
 
   start_time: Joi.string()
-    .pattern(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/)
-    .optional(),
+  .pattern(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) ([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/)
+      .optional(),
 }).unknown(false);
 
 
 /**
  * Delete Movie Into Theater
  */
-exports.deleteMovieIntoTheater = Joi.object({
+exports.deleteMovieIntoTheaterSchema = Joi.object({
   MT_id: Joi.number()
     .integer()
     .positive()

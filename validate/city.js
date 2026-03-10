@@ -3,7 +3,7 @@ const Joi = require("joi");
 /**
  * Add City Validation
  */
-exports.addCity = Joi.object({
+exports.addCitySchema = Joi.object({
   name: Joi.string()
     .trim()
     .min(2)

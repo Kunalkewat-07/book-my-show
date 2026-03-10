@@ -1,6 +1,6 @@
 const { QueryTypes } = require("sequelize");
 const sequelize = require("../config/db");
-const {
+ /* const {
   user: Users,
   city: Cities,
   feedback: Feedbacks,
@@ -11,9 +11,8 @@ const {
   theater: Theaters,
   payment: Payments,
   movieTheater: MovieTheaters,
-} = require("../models/dbhelper");
-
-
+} = require("../models/dbhelper"); */
+ 
 exports.top_moives_reports= async(req,res)=>{
 try {
     if(req.user.role!='admin')
@@ -102,18 +101,18 @@ exports.getAlmostFullShows = async(req, res)=>{
  join Screens s on s.screen_id = m2.screen_id
  join Theaters t on m2.theater_id = t.theater_id
  join Movies mv on mv.movie_id = m2.movie_id) as allinfo
-where percentage > 90 limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
+where percentage > 90 order by movie_name limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
 if(data.length==0){
     return res.status(404).json(data)
 }
 let count  = await sequelize.query(`select count(*) as total_page from (select movie_name ,theater_name,start_time,booked as booked_seats , total_seats,percentage 
  from (select mv.name as movie_name,
  t.name as theater_name,
- m2.start_time,
+  date_format(m2.start_time,'%h:%i:%p')as start_time,Date_format( DATE_ADD(m2.start_time,Interval mv.duration_time minute),'%h:%i:%p') as end_time,
  bookingInfo.MT_id,
  bookingInfo.booked,
  s.total_seats,
- (bookingInfo.booked/s.total_seats)*90 as percentage
+ (bookingInfo.booked/s.total_seats)*100 as percentage
  from MovieTheaters m2 
  join (
  select MT_id,count(*) as booked 
@@ -125,7 +124,7 @@ let count  = await sequelize.query(`select count(*) as total_page from (select m
  join Screens s on s.screen_id = m2.screen_id
  join Theaters t on m2.theater_id = t.theater_id
  join Movies mv on mv.movie_id = m2.movie_id) as allinfo
-where percentage > 90) as info`,{type: QueryTypes.SELECT})
+where percentage >= 90 order by movie_name) as info`,{type: QueryTypes.SELECT})
 
 count = count[0].total_page;
 const total_pages = Math.ceil(count/limit);
@@ -231,6 +230,11 @@ return res.status(200).json(data)
 
 exports.getTopRatedMovie = async(req, res)=>{
      try {
+        let pageno = parseInt(req.query.pageno) || 1;
+
+  const limit = parseInt(req.query.limit) || 5;
+
+  const offset = (pageno - 1) * limit;
         if(req.user.role!='admin')
             return res.status(403).json({message: "no permission"});
         const data = await sequelize.query(`select name,average_ratings,total_ratings from Movies m join(select movie_id , 
@@ -238,10 +242,18 @@ avg(rating) as average_ratings,count(rating) as  total_ratings
 from Feedbacks 
 where isDeleted=0 group by movie_id)as info
 on info.movie_id = m.movie_id
-where total_ratings > 100`,{type: QueryTypes.SELECT})
+where total_ratings > 100 order by average_ratings limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
 if(data.length==0){
-    return res.status(404).json({message:'not found'})
+    return res.status(404).json(data)
 } 
+let count = await sequelize.query(`select count(*) as total_page from (select name,average_ratings,total_ratings from Movies m join(select movie_id , 
+avg(rating) as average_ratings,count(rating) as  total_ratings
+from Feedbacks 
+where isDeleted=0 group by movie_id)as info
+on info.movie_id = m.movie_id
+where total_ratings > 100 order by average_ratings ) as info `,{type: QueryTypes.SELECT});
+count = count[0].total_page
+const total_pages = Math.ceil(count/limit);
 return res.status(200).json(data)
     } catch (error) {
         res.status(500).json(error.message)
@@ -346,7 +358,6 @@ order by  revenue desc) as info
 `,{type: QueryTypes.SELECT})
  count = count[0].total_page
 const total_pages = Math.ceil(count/limit);
-console.log(total_pages,count);
 return res.status(200).json({data,currentPage:pageno,total_pages:total_pages})
     } catch (error) {
         res.status(500).json(error.message)

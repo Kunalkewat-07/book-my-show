@@ -4,6 +4,7 @@ const {generateToken}= require('../utils/jwt')
 
 exports.signup = async(req,res)=>{
      try {
+      console.log("inside signuppp");
         const {name ,email,phone,password,dateOfBirth,role}= req.body;
         console.log(req.body);
         let  user = await Users.findOne({where:{email,isDeleted:false}});

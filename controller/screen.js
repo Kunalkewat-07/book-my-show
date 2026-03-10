@@ -14,6 +14,10 @@ exports.createScreen = async (req, res) => {
        const Theater=await Theaters.findOne({where:{theater_id,owner_id:req.user.user_id,isDeleted:false}});
        if(!Theater) return res.status(403).json({msg:"not authorized!!"})
 
+       const already_created_screen  = await Screen.findOne({where:{theater_id,screen_no}});
+       if(already_created_screen){
+        return res.status(409).json("screen already exists!!")
+       }
  const screeen=await Screen.create({...req.body,theater_id});
         res.status(200).json({msg:"screen create successfully !!"})
     } catch (err) {

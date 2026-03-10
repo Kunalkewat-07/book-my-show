@@ -1,12 +1,13 @@
 
-const {booking,payment}=require('../models/dbhelper')
+const {booking,payment,movieTheater,seat}=require('../models/dbhelper')
 const  sequelize  = require("../config/db");
+// const seat = require('../models/seat');
 
 
 
  async function is_seat_available(MT_id,seat_id)
 {
-    const Booking=await booking.findOne({where:{MT_id,seat_id,status:"cancelled",isDeleted:false}})
+    const Booking=await booking.findOne({where:{MT_id,seat_id,status:"booked",isDeleted:false}})
        return Booking;
 
 }
@@ -40,9 +41,13 @@ async function createBookingAndProcessPayment(userId, showId, seat_id, paymentDe
     }
 
 
-    const totalAmount = 1000;  
-  console.log("helloooooo")
-  
+     const Seat= await seat.findOne({where:{seat_id,isDeleted:false},raw:true})
+     const show= await movieTheater.findOne({where:{MT_id:showId,isDeleted:false},raw:true})
+
+     if(!show || !Seat) throw new Error('resource not found !!')
+
+    const totalAmount = show.price+Seat.price; 
+
     const Booking = await booking.create({
       user_id: userId,
       MT_id: showId,

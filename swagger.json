@@ -5,7 +5,7 @@
     "description": "Automatically generated Swagger docs",
     "version": "1.0.0"
   },
-  "host": "localhost:9293",
+  "host": "localhost:9636",
   "basePath": "/",
   "schemes": [
     "http"
@@ -42,7 +42,7 @@
                 },
                 "role": {
                   "type": "string",
-                  "enum": ["user","vendor","admin"]
+                  "enum": ["user","vendor"]
 
                 }
               }
@@ -76,10 +76,11 @@
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "kunal@gmail.com"
+                  "example": "kunal121@gmail.com"
                 },
                 "password": {
-                 "type": "string"
+                 "type": "string",
+                 "example": "Kunal@k07"
                 }
               }
             }
@@ -153,6 +154,7 @@
                     },
                     "method": {
                         "type": "string",
+                        "enum":["UPI","Net Banking", "credit card", "debit card"],
                         "example": "UPI"
                     },
                     "transactionId": {
@@ -624,7 +626,7 @@
   }
 ]
       }
-    },
+    },  
     "/api/auth/admin/getCancelledUsers": {
       "get": {
         "description": "",
@@ -841,7 +843,7 @@
                     "title": {
                         "type": "string"
                     },
-                    "nmae": {
+                    "name": {
                         "type": "string"
                     },
                     "genre": {
@@ -1157,7 +1159,7 @@
             "name": "Tid",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "body",
@@ -1174,10 +1176,7 @@
                 },
                 "screen_type": {
                   "type": "string",
-                  "enum": ["platinum","gold","silver"]
-                },
-                "theater_id":{
-                    "type": "integer"
+                  "enum": ["2D","3D","IMAX", "DolbyAtmos"]
                 }
               }
             }
@@ -1236,7 +1235,7 @@
                 },
                 "screen_type": {
                   "type": "string",
-                  "enum": ["platinum","gold","silver"]
+                  "enum": ["2D","3D", "DolbyAtmos","IMAX"]
                 },
                 "theater_id":{
                     "type": "integer"
@@ -1329,6 +1328,18 @@
                 },
                 "theater_id": {
                     "type": "integer"
+                },
+                "screen_id": {
+                  "type" : "integer"
+                },
+                "price":{
+                  "type": "integer",
+                  "example": 350
+                },
+                "start_time":{
+                  "type": "string",
+                  "format" : "datetime",
+                  "example" : "2026-03-06 08:00:00" 
                 }
               }
             }
@@ -1529,9 +1540,9 @@
         "parameters": [
           {
             "name": "screen_id",
-            "in": "params",
+            "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "body",
@@ -1552,6 +1563,9 @@
                   "type": "integer"
                 },
                 "silver_price": {
+                  "type": "integer"
+                },
+                "gold_price": {
                   "type": "integer"
                 }
             }
@@ -1593,9 +1607,9 @@
         "parameters": [
           {
             "name": "seat_id",
-            "in": "params",
+            "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {

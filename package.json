@@ -4,7 +4,8 @@
   "description": "npx sequelize-cli -h localhost -d BookMyShow -u root -p 3306 -x Mysql@123 -e mysql",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@ const Joi = require("joi");
 /**
  * Booking + Payment
  */
-exports.bookingAndPayment = Joi.object({
+exports.bookingAndPaymentSchema = Joi.object({
   showId: Joi.number()
     .integer()
     .positive()
@@ -34,4 +34,14 @@ exports.bookingAndPayment = Joi.object({
  * Cancel Booking
  * No body required
  */
-exports.cancelBooking = Joi.object({}).unknown(false);
+exports.bookingIdParamsSchema = Joi.object({
+  theater_id: Joi.number()
+    .integer()
+    .positive()
+    .required()
+    .messages({
+      "number.base": "Theater ID must be a number",
+      "number.positive": "Theater ID must be positive",
+      "any.required": "Theater ID is required"
+    })
+}).unknown(false);

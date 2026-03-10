@@ -3,7 +3,7 @@ const { auth } = require('../middleware/auth');
 const Router=require('express').Router();
 const validate = require('../middleware/validate');
 const { createScreenSchema, updateScreenSchema, screenIdParamSchema } = require('../validate/screen');
-const { theaterIdParamSchema } = require('../validate/theater');
+const { theaterIdParamSchema } = require('../validate/screen');
 const { createScreen, updateScreen, deleteScreen } = require('../controller/screen');
 
 Router.post('/create-screen/:Tid',validate(theaterIdParamSchema, "params"),validate(createScreenSchema, "body"),auth,createScreen)
