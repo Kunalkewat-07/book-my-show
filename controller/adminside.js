@@ -94,7 +94,7 @@ exports.getAlmostFullShows = async(req, res)=>{
  join (
  select MT_id,count(*) as booked 
  from Bookings b
- where status = 'booked' 
+ where status = 'booked' and isDeleted =0
  group by MT_id 
  )as bookingInfo 
  on bookingInfo.MT_id = m2.MT_id 

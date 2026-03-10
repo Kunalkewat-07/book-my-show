@@ -5,7 +5,7 @@
     "description": "Automatically generated Swagger docs",
     "version": "1.0.0"
   },
-  "host": "localhost:9636",
+  "host": "localhost:9293",
   "basePath": "/",
   "schemes": [
     "http"

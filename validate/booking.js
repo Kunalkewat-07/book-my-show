@@ -35,13 +35,13 @@ exports.bookingAndPaymentSchema = Joi.object({
  * No body required
  */
 exports.bookingIdParamsSchema = Joi.object({
-  theater_id: Joi.number()
+  booking_id: Joi.number()
     .integer()
     .positive()
     .required()
     .messages({
-      "number.base": "Theater ID must be a number",
-      "number.positive": "Theater ID must be positive",
-      "any.required": "Theater ID is required"
+      "number.base": "booking ID must be a number",
+      "number.positive": "booking ID must be positive",
+      "any.required": "booking ID is required"
     })
 }).unknown(false);
