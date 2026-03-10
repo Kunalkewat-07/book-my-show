@@ -42,5 +42,3 @@ app.listen(port,()=>{
 }
 
 startserver();
-
-console.log("called");
