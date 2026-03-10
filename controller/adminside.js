@@ -82,14 +82,14 @@ exports.getAlmostFullShows = async(req, res)=>{
   const offset = (pageno - 1) * limit;
        if(req.user.role!='admin')
             return res.status(403).json({message: "no permission"});
-        const data  = await sequelize.query(`select movie_name ,theater_name,start_time,booked as booked_seats , total_seats,percentage 
+        const data  = await sequelize.query(`select movie_name ,theater_name,start_time,end_time,booked as booked_seats , total_seats,percentage 
  from (select mv.name as movie_name,
  t.name as theater_name,
- m2.start_time,
+ date_format(m2.start_time,'%h:%i:%p')as start_time,Date_format( DATE_ADD(m2.start_time,Interval mv.duration_time minute),'%h:%i:%p') as end_time,
  bookingInfo.MT_id,
  bookingInfo.booked,
  s.total_seats,
- (bookingInfo.booked/s.total_seats)*90 as percentage
+ (bookingInfo.booked/s.total_seats)*100 as percentage
  from MovieTheaters m2 
  join (
  select MT_id,count(*) as booked 
@@ -101,7 +101,7 @@ exports.getAlmostFullShows = async(req, res)=>{
  join Screens s on s.screen_id = m2.screen_id
  join Theaters t on m2.theater_id = t.theater_id
  join Movies mv on mv.movie_id = m2.movie_id) as allinfo
-where percentage > 90 order by movie_name limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
+where percentage >= 90 order by movie_name limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
 if(data.length==0){
     return res.status(404).json(data)
 }
