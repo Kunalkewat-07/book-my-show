@@ -242,7 +242,7 @@ avg(rating) as average_ratings,count(rating) as  total_ratings
 from Feedbacks 
 where isDeleted=0 group by movie_id)as info
 on info.movie_id = m.movie_id
-where total_ratings > 100 order by average_ratings limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
+where total_ratings >= 100 and average_ratings>=4 order by average_ratings limit ${limit} offset ${offset}`,{type: QueryTypes.SELECT})
 if(data.length==0){
     return res.status(404).json(data)
 } 
@@ -251,7 +251,7 @@ avg(rating) as average_ratings,count(rating) as  total_ratings
 from Feedbacks 
 where isDeleted=0 group by movie_id)as info
 on info.movie_id = m.movie_id
-where total_ratings > 100 order by average_ratings ) as info `,{type: QueryTypes.SELECT});
+where total_ratings >= 100 and average_ratings>=4 order by average_ratings ) as info `,{type: QueryTypes.SELECT});
 count = count[0].total_page
 const total_pages = Math.ceil(count/limit);
 return res.status(200).json(data)

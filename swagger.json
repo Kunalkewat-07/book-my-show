@@ -1310,11 +1310,11 @@
 ]
       }
     },
-    "/api/theater/movie/add": {
+    "/api/theater/movie/addShow": {
       "post": {
         "description": "",
          "tags": [
-            "theater->movie"
+            "shows"
         ],
         "parameters": [
           {
@@ -1368,22 +1368,25 @@
 ]
       }
     },
-    "/api/theater/movie/update": {
+    "/api/theater/movie/updateShow/{MT_Id}": {
       "put": {
         "description": "",
         "tags": [
-            "theater->movie"
+            "shows"
         ],
         "parameters": [
+          {
+            "name": "MT_Id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "MT_id": {
-                  "type" : "integer"
-                },
                 "movie_id": {
                   "type": "integer"
                 },
@@ -1418,24 +1421,18 @@
 ]
       }
     },
-    "/api/theater/movie/delete": {
+    "/api/theater/movie/deleteShow/{MT_id}": {
       "delete": {
         "description": "",
         "tags": [
-            "theater->movie"
+            "shows"
         ],
         "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "MT_id": {
-                  "type": "integer"
-                }
-              }
-            }
+            {
+            "name": "MT_Id",
+            "in": "path",
+            "type": "integer",
+            "required": true
           }
         ],
         "responses": {

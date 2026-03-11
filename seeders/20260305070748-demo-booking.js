@@ -43,7 +43,7 @@ module.exports = {
           seat_id: seat.seat_id,
           MT_id: show.MT_id,
 
-          booking_time: faker.date.recent({ days: 10 }),
+          booking_time: faker.date.recent({ days: 900 }),
 
           status: faker.helpers.arrayElement(statuses),
 
