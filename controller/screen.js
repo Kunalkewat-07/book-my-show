@@ -1,3 +1,4 @@
+const { raw } = require('mysql');
 const models = require('../models/dbhelper');
 const { screen:Screen } = require('../models/dbhelper');
 const { theater:Theaters } = require('../models/dbhelper');
@@ -14,12 +15,13 @@ exports.createScreen = async (req, res) => {
        const Theater=await Theaters.findOne({where:{theater_id,owner_id:req.user.user_id,isDeleted:false}});
        if(!Theater) return res.status(403).json({msg:"not authorized!!"})
 
-       const already_created_screen  = await Screen.findOne({where:{theater_id,screen_no}});
+       const already_created_screen  = await Screen.findOne({where:{theater_id,screen_no,isDeleted:0}});
        if(already_created_screen){
         return res.status(409).json("screen already exists!!")
        }
  const screeen=await Screen.create({...req.body,theater_id});
-        res.status(200).json({msg:"screen create successfully !!"})
+ console.log(screeen);
+        res.status(200).json({msg:"screen create successfully !!"},screeen)
     } catch (err) {
         res.status(500).send(err.message);
     }

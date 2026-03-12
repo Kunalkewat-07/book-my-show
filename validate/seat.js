@@ -21,11 +21,15 @@ exports.createSeatSchema = Joi.object({
 
   silver_price: Joi.number()
     .min(0)
-    .required(),
-
+    .required()
+,
   platinum_price: Joi.number()
     .min(0)
     .required(),
+
+     gold_price: Joi.number()
+    .min(0)
+    .required()
 });
 
 

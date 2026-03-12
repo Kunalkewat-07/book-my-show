@@ -166,7 +166,6 @@ order by u.createdAt
 
  count = count[0].total_page
 const total_pages = Math.ceil(count/limit);
-console.log(total_pages,count);
 return res.status(200).json({data,currentPage:pageno,total_pages:total_pages})
     } catch (error) {
         res.status(500).json(error.message)

@@ -5,7 +5,7 @@
     "description": "Automatically generated Swagger docs",
     "version": "1.0.0"
   },
-  "host": "localhost:9293",
+  "host": "localhost:9380",
   "basePath": "/",
   "schemes": [
     "http"
@@ -974,7 +974,7 @@
                     "format": "time",
                   "example": "23:59:00"
                 },
-                "cityId":{
+                "city_id":{
                   "type": "integer",
                   "example": "2"
                 }
@@ -1395,6 +1395,44 @@
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+  {
+    "bearerAuth": []
+  }
+]
+      }
+    },
+    "/api/theater/movie/getShow/{movie_id}":{
+      "get": {
+        "description": "",
+        "tags": [
+            "shows"
+        ],
+        "parameters": [
+          {
+            "name": "movie_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
           }
         ],
         "responses": {

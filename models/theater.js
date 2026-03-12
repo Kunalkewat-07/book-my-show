@@ -52,12 +52,12 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 09:10:02"
+      defaultValue:  Date.now()
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 09:10:02"
+      defaultValue:  Date.now()
     },
     city_id: {
       type: DataTypes.INTEGER,

@@ -1,3 +1,4 @@
+const city = require("../models/city");
 const { theater: Theaters } = require("../models/dbhelper");
 
 exports.getTheater = async (req, res) => {
@@ -6,7 +7,8 @@ exports.getTheater = async (req, res) => {
 
     const theater = await Theaters.findOne({
       where: { theater_id, isDeleted: 0 },
-      attributes: { exclude: ["isDeleted", "deletedAt"] },
+      attributes: { exclude: ["isDeleted", "deletedAt","updatedAt"] },
+      
     });
 
     if (!theater) {
@@ -44,7 +46,8 @@ exports.getAllTheaters = async (req, res) => {
 
 exports.createTheater = async (req, res) => {
   try {
-    const { name, address, opening_time, closing_time } = req.body;
+    const { name, address, opening_time, closing_time ,city_id} = req.body;
+    console.log(city_id);
     if (req.user.role != "vendor" && req.user.role != "admin") {
       return res.status(401).json({ message: "you are not permitted" });
     }
@@ -58,6 +61,7 @@ exports.createTheater = async (req, res) => {
     } else {
       let theater = await Theaters.create({
         owner_id: req.user.user_id,
+        city_id : city_id,
         ...req.body,
       });
       res

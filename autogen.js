@@ -12,7 +12,6 @@ const auto = new SequelizeAuto('movie', 'root', 'Mysql@123', {
         timestamps: false
         // ...options added to each model
     }
-    //...
 })
 
 auto.run();

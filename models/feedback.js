@@ -39,12 +39,12 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 09:10:57"
+      defaultValue:  Date.now()
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 09:10:57"
+      defaultValue:  Date.now()
     },
     comment: {
       type: DataTypes.STRING(255),

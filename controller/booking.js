@@ -1,5 +1,5 @@
 
-const {booking,payment,movieTheater,seat}=require('../models/dbhelper')
+const {booking,payment,movieTheater,seat} =require('../models/dbhelper')
 const  sequelize  = require("../config/db");
 // const seat = require('../models/seat');
 
@@ -34,7 +34,6 @@ async function createBookingAndProcessPayment(userId, showId, seat_id, paymentDe
   const transaction = await sequelize.transaction();
 
   try {
-    console.log(showId)
     const is_Seat = await is_seat_available(showId, seat_id);
     if (is_Seat) {
       throw new Error('seat already Booked !!!!!');
@@ -77,14 +76,6 @@ console.log(Booking.booking_id)
     }
 
     await Payment.update({ payment_status: 'completed' }, { transaction });
-
-    // await Seat.update(
-    //   { is_available: false },
-    //   {
-    //     where: { seat_id: seat_no },
-    //     transaction
-    //   }
-    // );
 
     await Booking.update({ status: 'booked' }, { transaction });
 

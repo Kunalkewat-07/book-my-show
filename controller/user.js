@@ -4,9 +4,7 @@ const {generateToken}= require('../utils/jwt')
 
 exports.signup = async(req,res)=>{
      try {
-      console.log("inside signuppp");
         const {name ,email,phone,password,dateOfBirth,role}= req.body;
-        console.log(req.body);
         let  user = await Users.findOne({where:{email,isDeleted:false}});
         if(user){
           return  res.status(409).json({message :'Email already Exists'});
@@ -21,9 +19,8 @@ exports.signup = async(req,res)=>{
         dateOfBirth,
         role
        })
-       return res.status(400).json({message: 'user registered successfully'});
+       return res.status(200).json({message: 'user registered successfully'});
     } catch (error) {
-      console.log(error);
         return res.status(500).json(error.message);
      }
 }
@@ -32,14 +29,11 @@ exports.signup = async(req,res)=>{
 exports.login = async(req,res)=>{
   try {
    const {email , password} = req.body;
-   console.log(email,password);
    const user =  await Users.findOne({where:{email,isDeleted:false},raw:true});
-   console.log(user);
    if(!user){
       return res.status(404).json({message:'User not found'});
    }
    const is_match  = await bcrypt.compare(password,user.password);
-   console.log(is_match);
     if(!is_match){
       return res.status(404).json({message: 'invalid credintial !!'});
     }

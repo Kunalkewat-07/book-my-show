@@ -44,17 +44,17 @@ module.exports = function(sequelize, DataTypes) {
     paid_at: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: "2026-03-05 09:10:38"
+      defaultValue:  Date.now()
     },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 09:10:38"
+      defaultValue:  Date.now()
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: "2026-03-05 09:10:38"
+      defaultValue:  Date.now()
     }
   }, {
     sequelize,

@@ -1,8 +1,6 @@
 const Joi = require("joi");
 
-/**
- * Add City Validation
- */
+
 exports.addCitySchema = Joi.object({
   name: Joi.string()
     .trim()
@@ -24,8 +22,5 @@ exports.addCitySchema = Joi.object({
 }).unknown(false);
 
 
-/**
- * Get All City Validation
- * No body required
- */
+
 exports.getAllCity = Joi.object({}).unknown(false);

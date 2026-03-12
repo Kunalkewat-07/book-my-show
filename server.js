@@ -19,21 +19,22 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 app.get('/',(req,res)=>{
-    res.send('<h1>HELLO BROTHER !! </h1>')
+    res.send('<h1>welcome to bookmyshow </h1>')
 })
 
 
 
 app.use('/api/auth',userRout)
-app.use('/api/movie',movieRout)
 app.use('/api/theater',theaterRout)
+app.use('/api/movie',movieRout)
 app.use('/api/city',cityRout)
 app.use('/api/seat',seatRout)
 
 async function startserver() {
     try {
         await sequelize.authenticate();
-app.listen(port,()=>{
+            console.log("db connected");
+            app.listen(port,()=>{
     console.log(`server has started at http://localhost:${port}`);
 })
     } catch (error) {

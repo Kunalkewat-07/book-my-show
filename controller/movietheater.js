@@ -1,5 +1,7 @@
 
+const { RAW } = require('sequelize/lib/query-types');
 const { movie:Movies, theater:Theaters, movieTheater:MovieTheaters } = require('../models/dbhelper');
+const { raw } = require('mysql');
 
 exports.addMovieIntoTheater = async (req, res) => {
 
@@ -89,16 +91,14 @@ exports.deleteMovieIntoTheater = async (req, res) => {
     }
 
 }
-/* 
+ 
 exports.getMoviesOfTheater = async (req, res) => {
 
     try {
-        const { movie_id, theater_id } = req.params;
-
-        const theater_movies = await MovieTheaters.findAll({ where: { isDeleted: 0, movie_id, theater_id } });
-
-        res.status(200).send(theater_movies);
+        const { movie_id} = req.params;
+        const theater_movies = await MovieTheaters.findAll({ where: { isDeleted: 0, movie_id} ,raw:true,});
+        res.status(200).json(theater_movies);
     } catch (err) {
         res.status(500).send(err.message);
     }
-} */
+} 
