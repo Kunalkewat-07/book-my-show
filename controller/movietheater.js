@@ -24,7 +24,7 @@ exports.addMovieIntoTheater = async (req, res) => {
                     let theater_movie = await MovieTheaters.create(req.body);
                     res.status(200).send({ message: 'movie successfully added into the theater ', theater_movie });
                 } else {
-                    res.status(403).send('you are not permitted');
+                    res.status(403).send('you are not permitted'); 
                 }
             }
         }

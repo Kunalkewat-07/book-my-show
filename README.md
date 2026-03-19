@@ -18,7 +18,7 @@ This project is a REST API for managing movie bookings.
 ## Installation
 
 1. Clone the repository
-git clone https://github.com/kunalkewat@team.bigscal.com/book-my-show.git
+git clone https://github.com/Kunalkewat-07/book-my-show.git
 
 2. Install dependencies
 npm install

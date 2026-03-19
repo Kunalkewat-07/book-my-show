@@ -1,13 +1,24 @@
+
 const {user:Users} = require('../models/dbhelper');
 const bcrypt = require('bcrypt');
 const {generateToken}= require('../utils/jwt')
+const catchAsync = require('../utils/catchAsync')
+const redis = require('redis');
+const moment = require('moment');
+const { sendOtpEmail } = require('../services/mail.service');
+const {redisClient} =  require('../config/redis.js');
+const { verify } = require('../config/mailer.js');
 
 exports.signup = async(req,res)=>{
      try {
         const {name ,email,phone,password,dateOfBirth,role}= req.body;
         let  user = await Users.findOne({where:{email,isDeleted:false}});
+        let check_phone = await Users.findOne({where:{phone:phone ,isDeleted : false}})
         if(user){
           return  res.status(409).json({message :'Email already Exists'});
+        }
+        if(check_phone){
+         return res.status(409).json({message: "phone no. already exists"})
         }
         const haspass = await bcrypt.hash(password ,10);
 
@@ -47,6 +58,37 @@ exports.login = async(req,res)=>{
   }
 }
 
+exports.sendOtp = catchAsync(async(req,res)=>{
+   const {email} = req.body;
+      const otp = Math.floor(100000 + Math.random() * 900000);
+     console.log(otp);
+     const expireTime = moment().add(5,'minutes')
+   
+      await redisClient.set(`otp:${email}`,otp.toString(),{
+      EX:300
+   } );
+   //  sendOtpEmail(email,otp)
+   res.status(200).json({
+      msg: "otp sent",
+      otp: otp,
+      expiresAt: expireTime,
+   })
+})    
+
+exports.verifyOtp = catchAsync(async(req, res)=>{
+   const {otp,email} = req.body;
+   const storedOTp =  await redisClient.get(`otp:${email}`);
+   if(!storedOTp){
+      return res.status(400).json({message: "OTP expired !!"
+      })
+   }
+   console.log('otp',storedOTp);
+   if(storedOTp!== otp.toString()){
+      return res.status(400).json({message: "invalid OTP"});
+   }
+   await redisClient.del(`otp:${email}`);
+   res.status(200).json({message: "otp verified"})
+})
 exports.getUser = async(req, res)=>{
    try {
       const id= req.user.user_id;

@@ -14,10 +14,17 @@ exports.createSeat = async (req, res) => {
     if (req.user.role == "user" || req.user.role == 'admin') {
       return res.status(401).json("you are not permitted");
     }
+
+
+
       const is_seat_available = await Seats.findOne({where:{screen_id,isDeleted:0}});
       if(is_seat_available){
         return res.status(401).json("seats already exists")
       }
+
+
+
+      
     const screen_of_theater = await Screens.findOne({
       where: { screen_id: screen_id },
       include: [

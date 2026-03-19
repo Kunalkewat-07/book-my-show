@@ -12,7 +12,9 @@ const sequelize = new Sequelize(
     logging: false
   }
 );
+const connectDb =  function connetDb(){
+sequelize.authenticate().then(data => console.log("DB Connected"));
+}
 
 
-
-module.exports = sequelize;    
+module.exports = {sequelize,connectDb};    

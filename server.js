@@ -6,40 +6,26 @@ const port=process.env.PORT || 3000
 const sequelize=require('./config/db')
 const swagger = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json')
-
-const userRout=require('./router/user')
-const movieRout=require('./router/movie')
-const theaterRout=require('./router/theater');
-const cityRout=require('./router/city');
-const seatRout=require('./router/saet')
+const moment = require('moment-timezone')
+const allRout = require('./router/index.route')
+const { connectRedis } = require('./config/redis');
+const {connectDb} = require('./config/db')
 
 app.use('/api-docs',swagger.serve,swagger.setup(swaggerDocument))
-
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use('/api',allRout)
 
-app.get('/',(req,res)=>{
+app.get('/time',(req,res)=>{  
     res.send('<h1>welcome to bookmyshow </h1>')
 })
 
 
+// sequelize.authenticate().then(data => console.log("DB Connected"));
 
-app.use('/api/auth',userRout)
-app.use('/api/theater',theaterRout)
-app.use('/api/movie',movieRout)
-app.use('/api/city',cityRout)
-app.use('/api/seat',seatRout)
+app.listen(port,()=>{
+console.log(`server has started at http://localhost:${port}`);
+});
 
-async function startserver() {
-    try {
-        await sequelize.authenticate();
-            console.log("db connected");
-            app.listen(port,()=>{
-    console.log(`server has started at http://localhost:${port}`);
-})
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-startserver();
+connectRedis()
+connectDb()

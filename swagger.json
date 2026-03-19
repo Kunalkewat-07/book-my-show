@@ -5,7 +5,7 @@
     "description": "Automatically generated Swagger docs",
     "version": "1.0.0"
   },
-  "host": "localhost:9380",
+  "host": "localhost:9090",
   "basePath": "/",
   "schemes": [
     "http"
@@ -83,6 +83,75 @@
                  "example": "Kunal@k07"
                 }
               }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/api/auth/sendOTp": {
+      "post": {
+        "description": "",
+         "tags": [
+            "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "kunal121@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/api/auth/verifyOtp": {
+      "post": {
+        "description": "",
+         "tags": [
+            "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "kunal121@gmail.com"
+                },
+                "otp": {
+                  "example": "202032"
+              }
+            }
             }
           }
         ],

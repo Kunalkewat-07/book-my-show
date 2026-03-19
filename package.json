@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "npx sequelize-cli -h localhost -d BookMyShow -u root -p 3306 -x Mysql@123 -e mysql",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server"
@@ -21,13 +22,18 @@
   "dependencies": {
     "@faker-js/faker": "^10.3.0",
     "bcrypt": "^6.0.0",
+    "bullmq": "^5.71.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "ioredis": "^5.10.0",
     "joi": "^18.0.2",
     "json": "^11.0.0",
     "jsonwebtoken": "^9.0.3",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.6.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.18.2",
+    "nodemailer": "^8.0.2",
     "redis": "^5.11.0",
     "sequelize": "^6.37.7",
     "sequelize-auto": "^0.8.8",
