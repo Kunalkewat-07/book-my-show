@@ -10,6 +10,7 @@ const moment = require('moment-timezone')
 const allRout = require('./router/index.route')
 const { connectRedis } = require('./config/redis');
 const {connectDb} = require('./config/db')
+const {worker} = require('./workers/emailworker')
 
 app.use('/api-docs',swagger.serve,swagger.setup(swaggerDocument))
 app.use(express.json())

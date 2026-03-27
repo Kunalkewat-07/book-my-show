@@ -5,18 +5,14 @@
     "description": "Automatically generated Swagger docs",
     "version": "1.0.0"
   },
-  "host": "localhost:9090",
+  "host": "localhost:9898",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/api/auth/signup": {
       "post": {
         "description": "",
-        "tags": [
-            "Authentication"
-        ],
+        "tags": ["Authentication"],
         "parameters": [
           {
             "name": "body",
@@ -28,7 +24,7 @@
                   "type": "string"
                 },
                 "email": {
-                "type": "string"
+                  "type": "string"
                 },
                 "phone": {
                   "type": "string"
@@ -42,8 +38,7 @@
                 },
                 "role": {
                   "type": "string",
-                  "enum": ["user","vendor"]
-
+                  "enum": ["user", "vendor"]
                 }
               }
             }
@@ -65,9 +60,7 @@
     "/api/auth/login": {
       "post": {
         "description": "",
-         "tags": [
-            "Authentication"
-        ],
+        "tags": ["Authentication"],
         "parameters": [
           {
             "name": "body",
@@ -79,8 +72,8 @@
                   "example": "kunal121@gmail.com"
                 },
                 "password": {
-                 "type": "string",
-                 "example": "Kunal@k07"
+                  "type": "string",
+                  "example": "Kunal@k07"
                 }
               }
             }
@@ -99,12 +92,10 @@
         }
       }
     },
-     "/api/auth/sendOTp": {
+    "/api/auth/sendOTp": {
       "post": {
         "description": "",
-         "tags": [
-            "Authentication"
-        ],
+        "tags": ["Authentication"],
         "parameters": [
           {
             "name": "body",
@@ -132,12 +123,10 @@
         }
       }
     },
-     "/api/auth/verifyOtp": {
+    "/api/auth/verifyOtp": {
       "post": {
         "description": "",
-         "tags": [
-            "Authentication"
-        ],
+        "tags": ["Authentication"],
         "parameters": [
           {
             "name": "body",
@@ -150,8 +139,8 @@
                 },
                 "otp": {
                   "example": "202032"
+                }
               }
-            }
             }
           }
         ],
@@ -171,9 +160,7 @@
     "/api/auth/getUser": {
       "get": {
         "description": "",
-         "tags": [
-            "Authentication"
-        ],
+        "tags": ["Authentication"],
         "responses": {
           "200": {
             "description": "OK"
@@ -188,19 +175,17 @@
             "description": "Internal Server Error"
           }
         },
-        "security": [
-  {
-    "bearerAuth": []
-  }
-]
+                      "security": [
+                        {
+                          "bearerAuth": []
+                        }
+                      ]
       }
     },
     "/api/auth/book": {
       "post": {
         "description": "",
-         "tags": [
-            "bookings"
-        ],
+        "tags": ["bookings"],
         "parameters": [
           {
             "name": "body",
@@ -218,17 +203,22 @@
                   "type": "object",
                   "properties": {
                     "amount": {
-                        "type": "double",
-                        "example" :"300.00"
+                      "type": "double",
+                      "example": "300.00"
                     },
                     "method": {
-                        "type": "string",
-                        "enum":["UPI","Net Banking", "credit card", "debit card"],
-                        "example": "UPI"
+                      "type": "string",
+                      "enum": [
+                        "UPI",
+                        "Net Banking",
+                        "credit card",
+                        "debit card"
+                      ],
+                      "example": "UPI"
                     },
                     "transactionId": {
-                        "type": "string",
-                        "example": "TXN1223898394"
+                      "type": "string",
+                      "example": "TXN1223898394"
                     }
                   }
                 }
@@ -247,19 +237,17 @@
             "description": "Not Found"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/cencalBooking/{booking_id}": {
       "post": {
         "description": "",
-        "tags": [
-            "bookings"
-        ],
+        "tags": ["bookings"],
         "parameters": [
           {
             "name": "booking_id",
@@ -279,19 +267,17 @@
             "description": "Not Found"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/feedback/add-feedback": {
       "post": {
         "description": "",
-        "tags": [
-            "feedbacks"
-        ],
+        "tags": ["feedbacks"],
         "parameters": [
           {
             "name": "body",
@@ -320,19 +306,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/feedback/delete-feedback/{fid}": {
       "delete": {
         "description": "",
-        "tags": [
-            "feedbacks"
-        ],
+        "tags": ["feedbacks"],
         "parameters": [
           {
             "name": "fid",
@@ -352,19 +336,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/feedback/update-feedback/{fid}": {
       "put": {
         "description": "",
-        "tags": [
-            "feedbacks"
-        ],
+        "tags": ["feedbacks"],
         "parameters": [
           {
             "name": "fid",
@@ -376,18 +358,18 @@
             "name": "body",
             "in": "body",
             "schema": {
-                "type": "object",
-                "properties": {
-                    "rating": {
-                        "type": "integer",
-                        "example": "4" 
-                    },
-                    "comment": {
-                        "type": "string",
-                        "example": "nice movie"
-                    }
+              "type": "object",
+              "properties": {
+                "rating": {
+                  "type": "integer",
+                  "example": "4"
+                },
+                "comment": {
+                  "type": "string",
+                  "example": "nice movie"
                 }
-             }
+              }
+            }
           }
         ],
         "responses": {
@@ -404,19 +386,17 @@
             "description": "Not Found"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getTopMovies": {
       "get": {
         "description": "",
-        "tags": [
-            "Analytics"
-        ],
+        "tags": ["Analytics"],
         "responses": {
           "200": {
             "description": "OK"
@@ -434,19 +414,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getMonthlyRevenue": {
       "get": {
         "description": "",
-          "tags": [
-            "Analytics"
-        ],
+        "tags": ["Analytics"],
         "parameters": [
           {
             "name": "pageno",
@@ -476,19 +454,18 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getAlmostFullShows": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],"parameters": [
+        "tags": ["Analytics"],
+        "parameters": [
           {
             "name": "pageno",
             "in": "query",
@@ -517,19 +494,18 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getFrequentUsers": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],"parameters": [
+        "tags": ["Analytics"],
+        "parameters": [
           {
             "name": "pageno",
             "in": "query",
@@ -558,19 +534,18 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getTheaterRevenue": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],"parameters": [
+        "tags": ["Analytics"],
+        "parameters": [
           {
             "name": "pageno",
             "in": "query",
@@ -599,19 +574,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getSeatPreference": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],
+        "tags": ["Analytics"],
         "responses": {
           "200": {
             "description": "OK"
@@ -629,19 +602,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getTopRatedMovies": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],
+        "tags": ["Analytics"],
         "responses": {
           "200": {
             "description": "OK"
@@ -659,19 +630,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/preBookingHours": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],
+        "tags": ["Analytics"],
         "responses": {
           "200": {
             "description": "OK"
@@ -689,19 +658,18 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
-    },  
+    },
     "/api/auth/admin/getCancelledUsers": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],"parameters": [
+        "tags": ["Analytics"],
+        "parameters": [
           {
             "name": "pageno",
             "in": "query",
@@ -730,19 +698,18 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/auth/admin/getCityWiseRevenue": {
       "get": {
         "description": "",
-         "tags": [
-            "Analytics"
-        ],"parameters": [
+        "tags": ["Analytics"],
+        "parameters": [
           {
             "name": "pageno",
             "in": "query",
@@ -771,58 +738,56 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/movie/create-movie": {
       "post": {
         "description": "",
-         "tags": [
-            "Movies"
-        ],
-        "parameters":[
-            {
-                "name": "body",
-                "in": "body",
-                "schema": {
-                    "type": "object",
-                    "properties":{
-                        "title": {
-                            "type": "string",
-                            "example": "pushpa the rise"
-                        },
-                        "language": {
-                            "type": "string",
-                            "example": "hindi, telgu, tamil"
-                        },
-                        "name":{
-                            "type": "string",
-                            "example": "pushpa"
-                        },
-                        "genre": {
-                            "type": "string",
-                            "example": "thriller,suspense,action"
-                        },
-                        "duration_time": {
-                                "type" : "integer",
-                                "example" : 120
-                        },
-                       "release_date": {
-                          "type": "string",
-                           "format": "date",
-                           "example": "2026-03-06"
-                        },
-                        "description": {
-                            "type": "string",
-                            "example": "pushpa is the action thirller fild by ss rajamouli"
-                        }
-                    }
+        "tags": ["Movies"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "pushpa the rise"
+                },
+                "language": {
+                  "type": "string",
+                  "example": "hindi, telgu, tamil"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "pushpa"
+                },
+                "genre": {
+                  "type": "string",
+                  "example": "thriller,suspense,action"
+                },
+                "duration_time": {
+                  "type": "integer",
+                  "example": 120
+                },
+                "release_date": {
+                  "type": "string",
+                  "format": "date",
+                  "example": "2026-03-06"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "pushpa is the action thirller fild by ss rajamouli"
                 }
+              }
             }
+          }
         ],
         "responses": {
           "200": {
@@ -841,19 +806,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/movie/delete-movie/{mid}": {
       "delete": {
         "description": "",
-         "tags": [
-            "Movies"
-        ],
+        "tags": ["Movies"],
         "parameters": [
           {
             "name": "mid",
@@ -882,19 +845,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/movie/update-movie/{mid}": {
       "put": {
         "description": "",
-         "tags": [
-            "Movies"
-        ],
+        "tags": ["Movies"],
         "parameters": [
           {
             "name": "mid",
@@ -907,30 +868,29 @@
             "in": "body",
             "required": true,
             "schema": {
-                "type": "object",
-                "properties":{
-                    "title": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "genre": {
-                        "type": "string"
-                    },
-                    "duration_time": {
-                        "type": "integer"
-                    },
-                    "release_date": {
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "genre": {
+                  "type": "string"
+                },
+                "duration_time": {
+                  "type": "integer"
+                },
+                "release_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "description": {
+                  "type": "string"
                 }
+              }
             }
-
           }
         ],
         "responses": {
@@ -953,19 +913,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/movie/get-movie/{mid}": {
       "get": {
         "description": "",
-         "tags": [
-            "Movies"
-        ],
+        "tags": ["Movies"],
         "parameters": [
           {
             "name": "mid",
@@ -990,9 +948,7 @@
     "/api/movie/getall-movie": {
       "get": {
         "description": "",
-         "tags": [
-            "Movies"
-        ],
+        "tags": ["Movies"],
         "parameters": [
           {
             "name": "pageno",
@@ -1015,9 +971,7 @@
     "/api/theater/create-theater": {
       "post": {
         "description": "",
-         "tags": [
-            "theater"
-        ],
+        "tags": ["theater"],
         "parameters": [
           {
             "name": "body",
@@ -1026,29 +980,28 @@
               "type": "object",
               "properties": {
                 "name": {
-                    "type": "string",
+                  "type": "string",
                   "example": "janta theater"
                 },
                 "address": {
-                    "type": "string",
+                  "type": "string",
                   "example": "udhna darwaja surat gujrat"
                 },
                 "opening_time": {
-                    "type": "string",
-                    "format": "time",
+                  "type": "string",
+                  "format": "time",
                   "example": "08:00:00"
                 },
                 "closing_time": {
-                   "type": "string",
-                    "format": "time",
+                  "type": "string",
+                  "format": "time",
                   "example": "23:59:00"
                 },
-                "city_id":{
+                "city_id": {
                   "type": "integer",
                   "example": "2"
                 }
               }
-       
             }
           }
         ],
@@ -1065,48 +1018,46 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/update/{theater_id}": {
       "put": {
         "description": "",
-        "tags": [
-            "theater"
-        ],
+        "tags": ["theater"],
         "parameters": [
           {
             "name": "theater_id",
             "in": "path",
             "required": true,
             "type": "string"
-          },{
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                    "type": "string"
+                  "type": "string"
                 },
                 "address": {
-                    "type": "string"
+                  "type": "string"
                 },
                 "opening_time": {
-                    "type": "string",
-                    "format": "time"
-                 
+                  "type": "string",
+                  "format": "time"
                 },
                 "closing_time": {
-                   "type": "string",
-                    "format": "time"
+                  "type": "string",
+                  "format": "time"
                 }
               }
-       
             }
           }
         ],
@@ -1124,19 +1075,17 @@
             "description": "Internal Server Error"
           }
         },
-         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/delete/{theater_id}": {
       "delete": {
         "description": "",
-        "tags": [
-            "theater"
-        ],
+        "tags": ["theater"],
         "parameters": [
           {
             "name": "theater_id",
@@ -1155,19 +1104,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/get-theater/{theater_id}": {
       "get": {
         "description": "",
-        "tags": [
-            "theater"
-        ],
+        "tags": ["theater"],
         "parameters": [
           {
             "name": "theater_id",
@@ -1192,9 +1140,7 @@
     "/api/theater/get-all-theaters": {
       "get": {
         "description": "",
-        "tags": [
-            "theater"
-        ],
+        "tags": ["theater"],
         "parameters": [
           {
             "name": "pageno",
@@ -1220,9 +1166,7 @@
     "/api/theater/screen/create-screen/{Tid}": {
       "post": {
         "description": "",
-        "tags": [
-            "screen"
-        ],
+        "tags": ["screen"],
         "parameters": [
           {
             "name": "Tid",
@@ -1233,7 +1177,7 @@
           {
             "name": "body",
             "in": "body",
-             "required": true,
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
@@ -1245,7 +1189,7 @@
                 },
                 "screen_type": {
                   "type": "string",
-                  "enum": ["2D","3D","IMAX", "DolbyAtmos"]
+                  "enum": ["2D", "3D", "IMAX", "DolbyAtmos"]
                 }
               }
             }
@@ -1270,29 +1214,29 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/screen/update-screen/{sid}": {
       "put": {
         "description": "",
-         "tags": [
-            "screen"
-        ],
+        "tags": ["screen"],
         "parameters": [
           {
             "name": "sid",
             "in": "path",
             "required": true,
             "type": "string"
-          },{
+          },
+          {
             "name": "body",
             "in": "body",
-             "required": true,
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
@@ -1304,10 +1248,10 @@
                 },
                 "screen_type": {
                   "type": "string",
-                  "enum": ["2D","3D", "DolbyAtmos","IMAX"]
+                  "enum": ["2D", "3D", "DolbyAtmos", "IMAX"]
                 },
-                "theater_id":{
-                    "type": "integer"
+                "theater_id": {
+                  "type": "integer"
                 }
               }
             }
@@ -1332,19 +1276,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/screen/delete-screen/{sid}": {
       "delete": {
         "description": "",
-         "tags": [
-            "screen"
-        ],
+        "tags": ["screen"],
         "parameters": [
           {
             "name": "sid",
@@ -1372,19 +1315,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/movie/addShow": {
       "post": {
         "description": "",
-         "tags": [
-            "shows"
-        ],
+        "tags": ["shows"],
         "parameters": [
           {
             "name": "body",
@@ -1393,22 +1335,22 @@
               "type": "object",
               "properties": {
                 "movie_id": {
-                    "type": "integer"
+                  "type": "integer"
                 },
                 "theater_id": {
-                    "type": "integer"
+                  "type": "integer"
                 },
                 "screen_id": {
-                  "type" : "integer"
+                  "type": "integer"
                 },
-                "price":{
+                "price": {
                   "type": "integer",
                   "example": 350
                 },
-                "start_time":{
+                "start_time": {
                   "type": "string",
-                  "format" : "datetime",
-                  "example" : "2026-03-06 08:00:00" 
+                  "format": "datetime",
+                  "example": "2026-03-06 08:00:00"
                 }
               }
             }
@@ -1430,19 +1372,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/movie/updateShow/{MT_Id}": {
       "put": {
         "description": "",
-        "tags": [
-            "shows"
-        ],
+        "tags": ["shows"],
         "parameters": [
           {
             "name": "MT_Id",
@@ -1484,18 +1425,16 @@
           }
         },
         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/theater/movie/getShow/{movie_id}":{
+    "/api/theater/movie/getShow/{movie_id}": {
       "get": {
         "description": "",
-        "tags": [
-            "shows"
-        ],
+        "tags": ["shows"],
         "parameters": [
           {
             "name": "movie_id",
@@ -1522,20 +1461,18 @@
           }
         },
         "security": [
-  {
-    "bearerAuth": []
-  }
-]
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/theater/movie/deleteShow/{MT_id}": {
       "delete": {
         "description": "",
-        "tags": [
-            "shows"
-        ],
+        "tags": ["shows"],
         "parameters": [
-            {
+          {
             "name": "MT_Id",
             "in": "path",
             "type": "integer",
@@ -1558,39 +1495,37 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/city/add-city": {
       "post": {
         "description": "",
-        "tags": [
-            "city"
-        ],
-         "parameters": [
+        "tags": ["city"],
+        "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-                "type": "object",
-                "properties": {
-                    "name":{
-                        "type": "string"
-                    },
-                    "state":{
-                        "type": "string"
-                    },
-                    "country": {
-                        "type": "string"
-                    }
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
                 }
+              }
             }
-
           }
         ],
         "responses": {
@@ -1606,19 +1541,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/city/getAll-city": {
       "get": {
         "description": "",
-        "tags": [
-            "city"
-        ],
+        "tags": ["city"],
         "responses": {
           "200": {
             "description": "OK"
@@ -1638,9 +1572,7 @@
     "/api/seat/create-seat/{screen_id}": {
       "post": {
         "description": "",
-        "tags": [
-            "seat"
-        ],
+        "tags": ["seat"],
         "parameters": [
           {
             "name": "screen_id",
@@ -1655,7 +1587,7 @@
               "type": "object",
               "properties": {
                 "silver": {
-                 "type": "integer"
+                  "type": "integer"
                 },
                 "gold": {
                   "type": "integer"
@@ -1672,9 +1604,9 @@
                 "gold_price": {
                   "type": "integer"
                 }
+              }
             }
           }
-        }
         ],
         "responses": {
           "200": {
@@ -1695,19 +1627,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/seat/delete-seat/{seat_id}": {
       "delete": {
         "description": "",
-        "tags": [
-            "seat"
-        ],
+        "tags": ["seat"],
         "parameters": [
           {
             "name": "seat_id",
@@ -1732,11 +1663,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        },"security": [
-  {
-    "bearerAuth": []
-  }
-]
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
@@ -1746,5 +1678,5 @@
       "name": "Authorization",
       "in": "header"
     }
-  } 
+  }
 }

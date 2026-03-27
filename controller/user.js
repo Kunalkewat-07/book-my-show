@@ -8,20 +8,38 @@ const moment = require('moment');
 const { sendOtpEmail } = require('../services/mail.service');
 const {redisClient} =  require('../config/redis.js');
 const { verify } = require('../config/mailer.js');
-
+const { addEmailJOb } = require('../jobs/email.jon.js');
+const {Op, QueryTypes} = require('sequelize');
+const { sequelize } = require('../config/db.js');
+const { SELECT } = require('sequelize/lib/query-types');
 exports.signup = async(req,res)=>{
      try {
-        const {name ,email,phone,password,dateOfBirth,role}= req.body;
-        let  user = await Users.findOne({where:{email,isDeleted:false}});
-        let check_phone = await Users.findOne({where:{phone:phone ,isDeleted : false}})
+        let {name ,email,phone,password,dateOfBirth,role}= req.body;
+      let user = await sequelize.query(`CALL checkUserWithEmailAndPhone(:email,:phone)`,{
+         replacements: {
+            email , phone
+         },QueryTypes:SELECT
+      })
+     /*   let  user =  await Users.findOne({
+         where:{
+            [Op.or] : [
+               {email: email},
+               {phone: phone}
+            ],
+             isDeleted:false
+         }
+        })
+         */
         if(user){
-          return  res.status(409).json({message :'Email already Exists'});
-        }
-        if(check_phone){
-         return res.status(409).json({message: "phone no. already exists"})
-        }
+         if(user[0].status===1){
+            return res.status(400).json({message: 'Email already exists'})
+         }
+         if(user[0].status===2){
+            return res.status(400).json({message: 'Already registered with this phone no.'})
+         }
+        } 
+        user = null;
         const haspass = await bcrypt.hash(password ,10);
-
        user = await Users.create({
         name,
         email,
@@ -30,6 +48,13 @@ exports.signup = async(req,res)=>{
         dateOfBirth,
         role
        })
+
+      
+       await addEmailJOb({
+         email: user.email,
+         name: user.name
+       })
+       console.log("jayyyyyy")
        return res.status(200).json({message: 'user registered successfully'});
     } catch (error) {
         return res.status(500).json(error.message);
